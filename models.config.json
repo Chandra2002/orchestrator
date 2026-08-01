@@ -1,0 +1,21 @@
+{
+  "_notes": {
+    "_readme": "SINGLE SOURCE OF TRUTH for which model each role uses. JSON holds only role -> model; the role of each agent file is read from its own options.model_role. apply-models.sh rewrites the model: line in every agent file from THIS map. Preferred workflow: run the /setup command once per machine instead of hand-editing this file.",
+    "_usage": "Manual alternative: 1) Edit the model value(s) below to exact IDs available in opencode (see `opencode models`). 2) Run: bash apply-models.sh [path-to-this-file] [target-dir]. Target dir defaults to ~/.config/opencode/agent. 3) Restart opencode.",
+    "_defaults": "Defaults below are verified against `opencode models` on this machine.",
+    "_scanning": "scanning = Requirement Gathering (req-gathering). Pick the largest-context, lowest-cost model you have.",
+    "_design": "design = design/review-heavy agents (orchestrate, hld-designer, flows-identifier, test-generator, lld, spec-writer). Pick your strongest reasoning model.",
+    "_coding": "coding = execution agents (implementation, scaffold, planner, implementer, integration, qa, dev). Pick a fast/cheap model."
+  },
+  "roles": {
+    "scanning": {
+      "model": "opencode/deepseek-v4-flash-free"
+    },
+    "design": {
+      "model": "nvidia/nvidia/nemotron-3-ultra-550b-a55b"
+    },
+    "coding": {
+      "model": "nvidia/openai/gpt-oss-20b"
+    }
+  }
+}
